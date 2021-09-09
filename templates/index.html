@@ -1,18 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <table>
+{% extends 'bootstrap/base.html' %}
+{% block title %}Tokyo Train Delay{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <table class="content-table">
         <thead>
             <tr>
-                <td>Train Line</td>
-                <td>Train Status</td>
-                <td>Time</td>
+                <th>Railways</th>
+                <th>Train Status</th>
+                <th>Time</th>
             </tr>
         </thead>
         <tbody>
@@ -25,5 +26,6 @@
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
+</div>
+{% endblock %}
+
