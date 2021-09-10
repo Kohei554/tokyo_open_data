@@ -8,24 +8,31 @@
 
 {% block content %}
 <div class="container">
-    <table class="content-table">
-        <thead>
-            <tr>
-                <th>Railways</th>
-                <th>Train Status</th>
-                <th>Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for i in range(railways | length) %}
-            <tr>
-                <td>{{ railways[i] }}</td>
-                <td>{{ train_status[i] }}</td>
-                <td>{{ time[i] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Operators</th>
+                    <th scope="col">Railways</th>
+                    <th scope="col">Train Status</th>
+                    <th scope="col">Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for operator in (train_dict.keys() | list) %}
+                <tr>
+                    <th rowspan="{{ (train_dict[operator]['railways'] | length) + 1 }}" scope="col">{{operator}}</th>
+                    {% for i in range(train_dict[operator]["railways"] | length) %}
+                    <tr>
+                        <td><img src="{{ url_for('static', filename='img/logo/' + operator + ' ' + train_dict[operator]['railways'][i] + '.png') }}" class="railways-logo">{{ train_dict[operator]["railways"][i] }}</td>
+                        <td>{{ train_dict[operator]["train_status"][i] }}</td>
+                        <td>{{ train_dict[operator]["time"][i] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}
-
