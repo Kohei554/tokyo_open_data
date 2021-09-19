@@ -47,8 +47,10 @@ for i in range(len(data)):
         #api.update_status(before_context)
         context=""
     before_context=context
-    
 
-#ツイートの実行
-api.update_status(context)
-#print(context)
+if context=="":
+    print("No changes")
+else:
+    #ツイートの実行
+    api.update_status(context)
+    #print(context)
